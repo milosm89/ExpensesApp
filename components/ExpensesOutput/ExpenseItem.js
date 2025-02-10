@@ -5,12 +5,12 @@ function ExpenseItem({description, date, amount}) {
     return (
         <Pressable>
             <View>
-                <View>
-                    <Text>{description}</Text>
-                    <Text>{date}</Text>
+                <View style={styles.expenseItem}>
+                    <Text style={[styles.textBase, styles.description]}>{description}</Text>
+                    <Text style={styles.textBase}>{date}</Text>
                 </View>
-                <View>
-                    <Text>{amount}</Text>
+                <View style={styles.amountContainer}>
+                    <Text style={styles.amount}>{amount}</Text>
                 </View>
             </View>
         </Pressable>
