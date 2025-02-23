@@ -1,71 +1,24 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import ExpensesSummary from "./ExpensesSummary";
 import ExpensesList from "./ExpensesList";
 import { GlobalStyles } from "../../constants/styles";
 
-const DUMMY_EXPENSES = [
-    {
-        id: 'e1',
-        description: 'A pair of shoe',
-        amount: 59.99,
-        date: new Date('2021-12-19')
-    },
-    {
-        id: 'e2',
-        description: 'A pair of trousers',
-        amount: 89.99,
-        date: new Date('2022-01-05')
-    },
-    {
-        id: 'e3',
-        description: 'Some bananas',
-        amount: 5.99,
-        date: new Date('2021-12-01')
-    },
-    {
-        id: 'e4',
-        description: 'A book',
-        amount: 14.99,
-        date: new Date('2022-02-19')
-    },
-    {
-        id: 'e5',
-        description: 'Another book',
-        amount: 18.59,
-        date: new Date('2022-02-18')
-    },
-    {
-        id: 'e6',
-        description: 'A pair of trousers',
-        amount: 89.99,
-        date: new Date('2022-01-05')
-    },
-    {
-        id: 'e7',
-        description: 'Some bananas',
-        amount: 5.99,
-        date: new Date('2021-12-01')
-    },
-    {
-        id: 'e8',
-        description: 'A book',
-        amount: 14.99,
-        date: new Date('2022-02-19')
-    },
-    {
-        id: 'e9',
-        description: 'Another book',
-        amount: 18.59,
-        date: new Date('2022-02-18')
-    },
-];
-
 function ExpensesOutput({expenses, expensesPeriod}) {
+
     return (
-        <View style={styles.container}>
-            <ExpensesSummary expenses={DUMMY_EXPENSES} periodName={expensesPeriod} />
-            <ExpensesList expenses={DUMMY_EXPENSES} />
-        </View>
+        <>
+            {expenses.length > 0 ?
+            <View style={styles.container}>
+                <ExpensesSummary expenses={expenses} periodName={expensesPeriod} />
+                <ExpensesList expenses={expenses} /> 
+            </View> 
+            :
+            <View style={[styles.container, styles.textWrap]}>
+                <Text style={styles.text}>You no have recent expences in last 7 days!</Text>
+            </View>
+            }
+        </>
+        
     );
 }
 
@@ -77,6 +30,14 @@ const styles = StyleSheet.create({
         paddingTop: 24,
         paddingBottom: 0,
         backgroundColor: GlobalStyles.colors.primary700,
-        flex: 1
+        flex: 1,
+    },
+    textWrap: {
+        justifyContent: 'center',
+        alignContent: 'center'
+    },
+    text: {
+        color: 'white',
+        fontSize: 16
     }
 });
