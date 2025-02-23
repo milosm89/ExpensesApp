@@ -3,21 +3,19 @@ import ExpensesSummary from "./ExpensesSummary";
 import ExpensesList from "./ExpensesList";
 import { GlobalStyles } from "../../constants/styles";
 
-function ExpensesOutput({expenses, expensesPeriod}) {
+function ExpensesOutput({expenses, expensesPeriod, fallbackText}) {
 
+    let content = <Text style={styles.infotText}>{fallbackText}</Text>;
+
+    if (expenses.length > 0) {
+        content = <ExpensesList expenses={expenses} />
+    }
     return (
-        <>
-            {expenses.length > 0 ?
-            <View style={styles.container}>
-                <ExpensesSummary expenses={expenses} periodName={expensesPeriod} />
-                <ExpensesList expenses={expenses} /> 
-            </View> 
-            :
-            <View style={[styles.container, styles.textWrap]}>
-                <Text style={styles.text}>You no have recent expences in last 7 days!</Text>
-            </View>
-            }
-        </>
+        
+        <View style={styles.container}>
+            <ExpensesSummary expenses={expenses} periodName={expensesPeriod} />
+             {content}
+        </View> 
         
     );
 }
@@ -36,8 +34,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center'
     },
-    text: {
+    infotText: {
         color: 'white',
-        fontSize: 16
+        fontSize: 16,
+        textAlign: 'center',
+        marginTop: 32
     }
 });
