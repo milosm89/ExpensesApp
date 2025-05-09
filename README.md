@@ -1,2 +1,2 @@
 # ExpensesApp
-Expenses app
+React Native 
