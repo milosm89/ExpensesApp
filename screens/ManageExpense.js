@@ -38,6 +38,7 @@ function ManageExpense({route, navigation}) {
             expensesCtx.addExpense(expenseData);
         }
         navigation.goBack();
+        // console.log(expenseData.amount)
     }
 
 
